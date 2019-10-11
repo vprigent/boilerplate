@@ -7,6 +7,8 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module Boilerplate
+  ActiveSupport.halt_callback_chains_on_return_false = false
+
   class Application < Rails::Application
     config.generators do |g|
       g.test_framework :rspec,
@@ -29,16 +31,22 @@ module Boilerplate
 
     # Our default timezone
     config.time_zone = 'Paris'
+    config.active_record.default_timezone = :local
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :fr
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.eager_load_paths << "#{config.root}/lib"
+    config.autoload_paths << "#{config.root}/lib"
 
     config.active_record.raise_in_transactional_callbacks = true
+    config.active_record.belongs_to_required_by_default = false
+
     config.exceptions_app = self.routes
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end
 
@@ -48,7 +56,7 @@ if ENV["SLACK_WEBHOOK_URL"].present?
       :webhook_url => ENV["SLACK_WEBHOOK_URL"],
       :channel => "#exceptions",
       :additional_parameters => {
-        icon_url: "http://Boilerplate",
+        icon_url: "#{ENV["HOST"]}/assets/logo.png",
         mrkdwn: true,
         username: "Boilerplate-#{Rails.env}"
       }

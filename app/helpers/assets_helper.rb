@@ -1,11 +1,23 @@
 
-module SassHelper
+module AssetsHelper
   require 'sass/utils'
-  require 'tempfile'
+
+  def inline_file(path)
+    if assets = Rails.application.assets
+      asset = assets.find_asset(path)
+      return '' unless asset
+      asset.source
+    else
+      File.read(File.join(Rails.root, 'public', asset_path(path)))
+    end
+  end
+
+  def inline_js(path)
+    "<script>#{inline_file path}</script>".html_safe
+  end
 
   def inline_css(path)
-    source = File.read("#{Rails.root}/app/assets/stylesheets/#{path}.sass")
-    "<style>#{SassUtils.compile(source)}</style>"
+    "<style>#{inline_file path}</style>".html_safe
   end
 
   def compile(item)

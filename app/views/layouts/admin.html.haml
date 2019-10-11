@@ -17,7 +17,16 @@
     = javascript_include_tag 'critical'
     = csrf_meta_tags
 
-  - body_class = "#{yield :extra_body_class} #{controller_name} #{action_name}".strip
+    - body_class = "#{yield :extra_body_class} #{controller_name} #{action_name}".strip
+
+    <!--[if IE 8]>
+    = stylesheet_link_tag 'shame', media: 'all'
+    <![endif]-->
+
+    <!--[if IE 9]>
+    = stylesheet_link_tag 'shame', media: 'all'
+    <![endif]-->
+
   %body{class: body_class}
     %nav.navbar.navbar-default{role: :navigation}
 

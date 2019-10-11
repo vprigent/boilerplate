@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
     config.aws_bucket = ENV['AWS_BUCKET']
     config.aws_acl    = 'public-read'
 
-    config.asset_host = "https://#{ ENV['ASSET_HOST'] }"
+    config.asset_host = "//#{ ENV['ASSET_HOST'] }"
 
     config.aws_credentials = {
       access_key_id:      ENV['AWS_ACCESS_KEY_ID'] || ENV['AWS_ACCESS_KEY'],
@@ -31,7 +31,7 @@ module PublicUploader
   def self.included base
 
     if base.storage.name == base.storage_engines[:fog]
-      base.asset_host "https://#{ ENV['ASSET_HOST'] }"
+      base.asset_host "//#{ ENV['ASSET_HOST'] }"
     end
   end
 
@@ -48,5 +48,9 @@ module PublicUploader
       # ["#{name}-#{hash}", file.extension].compact.select(&:present?).join('.')
       [name, file.extension].compact.select(&:present?).join('.')
     end
+  end
+
+  def rmagick_image
+    ::Magick::Image.from_blob(self.read).first
   end
 end
