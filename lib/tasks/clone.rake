@@ -10,6 +10,7 @@ task :clone, [:name] do |t, args|
     "app/views/bp_*",
     "bp-gemfile.rb",
     "db/migrate/*_bp_*",
+    "db/seeds/bp_**",
     "lib/tasks/clone.rake",
     "spec/controllers/bp_*",
     "spec/factories/bp_*",
@@ -61,6 +62,8 @@ task :clone, [:name] do |t, args|
     end
   end
   FileUtils.cp '.gitignore', rel_path
+  FileUtils.cp '.rspec', rel_path
+  FileUtils.cp '.ruby-version', rel_path
 
   to_be_removed.each_with_index do |tgt, i|
     Dir["#{rel_path}/#{tgt}"].each do |f|
