@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.4'
-gem 'rails', '~> 5.0'
+gem 'rails', '~> 5.0.0'
 gem 'spring',        group: :development
 gem 'unicorn'
 gem 'unicorn-rails'
@@ -13,8 +13,6 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise_masquerade'
 gem 'pundit'
-gem 'createsend'
-gem 'pwdcalc'
 
 # Database
 gem 'pg'
