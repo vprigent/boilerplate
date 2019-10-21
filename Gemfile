@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.4'
-gem 'rails', '~> 5.0'
+gem 'rails', '~> 5.0.0'
 gem 'spring',        group: :development
 gem 'unicorn'
 gem 'unicorn-rails'
@@ -13,8 +13,6 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise_masquerade'
 gem 'pundit'
-gem 'createsend'
-gem 'pwdcalc'
 
 # Database
 gem 'pg'
@@ -52,7 +50,6 @@ gem 'delayed_job_active_record'
 
 # Notifier
 gem 'exception_notification'
-gem 'slack-notifier'
 
 # Sumo custom tools
 gem 'tprint-debug', git: 'https://github.com/3print/tprint-debug'

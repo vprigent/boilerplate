@@ -1,7 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require jquery.YAPSM.min
-#= require jquery.pwdcalc
+#= require jquery.widget
 #= require jquery.iframe-transport
 #= require utils/jquery.fileupload
 #= require bootstrap
