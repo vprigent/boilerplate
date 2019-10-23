@@ -1,5 +1,5 @@
 class ImageUploader < CarrierWave::Uploader::Base
-  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
   include PublicUploader
   include Sprockets::Rails::Helper
 
@@ -20,7 +20,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
     gravity_key = :"#{mounted_as}_gravity"
     if self.model.respond_to?(gravity_key) && gravity = self.model.send(gravity_key)
-      args[2] = "Magick::#{gravity.camelize}Gravity".constantize
+      args[2] = gravity_key
     end
 
     super(*args)

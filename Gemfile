@@ -39,7 +39,7 @@ gem 'kaminari'
 gem 'verbs'
 
 # Uploaders
-gem 'rmagick', require: false
+gem 'mini_magick', require: false
 gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'faker'
