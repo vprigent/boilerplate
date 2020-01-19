@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-ruby '2.3.4'
+ruby '2.6.5'
+
 gem 'rails', '~> 5.0.0'
 gem 'spring',        group: :development
-gem 'unicorn'
-gem 'unicorn-rails'
+gem 'puma'
 gem 'settingslogic'
-gem 'sendgrid'
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'sendgrid' # marked for deletion
+gem 'sdoc', '~> 0.4.0',          group: :doc # marked for deletion
 
 # Auth
 gem 'devise'
@@ -28,14 +28,14 @@ gem 'redcarpet'
 gem 'sassc-rails'
 gem 'uglifier'#, '>= 1.3.0'
 gem 'coffee-rails'#, '~> 4.0.0'
-gem 'jquery-rails'
+gem 'jquery-rails' # marked for hopeful deletion
 gem 'jbuilder'#, '~> 2.0'
 gem 'bootstrap-sass'
 gem 'bourbon'
-gem 'eco'
+gem 'eco' # marked for deletion
 
 # Models
-gem 'kaminari'
+gem 'kaminari' # to replace with pagy for faster collection management
 gem 'verbs'
 
 # Uploaders
@@ -57,13 +57,12 @@ gem 'sumo_seed', git: 'https://github.com/3print/sumo_seed'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', platforms: [:mri_22, :mri_23, :rbx]
+  gem 'binding_of_caller', platforms: [:mri_22, :mri_23, :rbx] # replace with pry
   gem 'html2haml'
   gem 'rails_layout'
-  gem 'rb-fchange', :require=>false
+  gem 'rb-fchange', :require=>false # for windows
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
-  gem 'rsense'
   # Guard
   gem 'guard'
   gem 'guard-bundler'
@@ -79,18 +78,20 @@ group :development do
 
   gem 'annotate'
 end
+
 group :development, :test do
-  gem 'factory_girl_rails'
-  gem 'pry-rails'
+  gem 'factory_girl_rails' # replace with factory_bot_rails
+  gem 'pry-rails' # marked for deletion, adding pry will be enough
   gem 'pry-rescue'
   gem 'rspec-rails'
 end
+
 group :test do
-  gem 'capybara'
+  gem 'capybara' # marked for deletion
   gem 'database_cleaner'
   gem 'shoulda-matchers'
-  gem 'launchy'
-  gem 'selenium-webdriver'
+  gem 'launchy' # marked for deletion
+  gem 'selenium-webdriver' # marked for deletion
 end
 
 Dir["./*-gemfile.rb"].each do |f|
