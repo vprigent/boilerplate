@@ -43,16 +43,23 @@ task :clone, [:name] do |t, args|
     backups = [
       "config/database.yml",
       "config/locales/*",
-      "app/views/*",
+      "app/views/**/*",
       "app/helpers/application_helper.rb"
     ]
 
-    backups.each_with_index do |tgt, i|
+    backups.each do |tgt|
       Dir["#{rel_path}/#{tgt}"].each do |f|
-        TPrint.log "Backing up #{"." * (i%3)}", kill_line: true
-        FileUtils.cp f, "#{f}.bak"
+        next if f.end_with?('.bak') || File.directory?(f)
+
+        TPrint.log "Backing up #{f}", kill_line: true
+        begin
+        	FileUtils.cp_r f, "#{f}.bak"
+	    	rescue Exception => e
+          puts e
+    		end
       end
     end
+    TPrint.log 'Backed up files', kill_line: true
   end
 
   TPrint.log "Copying files"
@@ -82,12 +89,16 @@ task :clone, [:name] do |t, args|
     f.write db_config
     f.close
   else
-    backups.each_with_index do |tgt, i|
+    backups.each do |tgt|
       Dir["#{rel_path}/#{tgt}"].each do |f|
-        TPrint.log "Restoring back up #{"." * (i%3)}", kill_line: true
+        next if f.end_with?('.bak') || File.directory?(f)
+
+        TPrint.log "Restoring back up #{f}", kill_line: true
         FileUtils.cp "#{f}.bak", f
+        FileUtils.rm "#{f}.bak"
       end
     end
+    TPrint.log "Restored back up", kill_line: true
   end
 
   TPrint.log "Installing bundle"
@@ -96,7 +107,7 @@ task :clone, [:name] do |t, args|
     TPrint.log "Creating DB"
     %x(cd #{rel_path}; bundle exec rake db:create)
     %x(cd #{rel_path}; bundle exec rake db:migrate)
-    %x(cd #{rel_path}; cat Gemfile | grep '^ruby' | sed  s/'ruby '// | xargs rbenv local)
+    %x(cd #{rel_path}; cat .ruby-version | xargs rvm install)
   end
 
   TPrint.log "Replacing project name"
