@@ -1,5 +1,5 @@
-require 'sass'
-require 'sass/importer'
+require 'sassc'
+require 'sassc/importer'
 
 class SassUtils
   def self.compile (source)

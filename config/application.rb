@@ -18,7 +18,7 @@ module Boilerplate
         routing_specs: false,
         controller_specs: false,
         request_specs: false
-      g.fixture_replacement :factory_girl, dir: "spec/factories"
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -30,12 +30,12 @@ module Boilerplate
     # config.time_zone = 'Central Time (US & Canada)'
 
     # Our default timezone
-    config.time_zone = 'Paris'
+    config.time_zone = 'Auckland'
     config.active_record.default_timezone = :local
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :fr
+    config.i18n.default_locale = :'en-NZ'
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.eager_load_paths << "#{config.root}/lib"

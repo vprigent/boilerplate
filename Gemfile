@@ -29,10 +29,9 @@ gem 'sassc-rails'
 gem 'uglifier'#, '>= 1.3.0'
 gem 'coffee-rails'#, '~> 4.0.0'
 gem 'jquery-rails' # marked for hopeful deletion
-gem 'jbuilder'#, '~> 2.0'
+gem 'jb'
 gem 'bootstrap-sass'
 gem 'bourbon'
-gem 'eco' # marked for deletion
 
 # Models
 gem 'kaminari' # to replace with pagy for faster collection management
@@ -80,18 +79,14 @@ group :development do
 end
 
 group :development, :test do
-  gem 'factory_girl_rails' # replace with factory_bot_rails
-  gem 'pry-rails' # marked for deletion, adding pry will be enough
+  gem 'factory_bot_rails'
   gem 'pry-rescue'
   gem 'rspec-rails'
 end
 
 group :test do
-  gem 'capybara' # marked for deletion
   gem 'database_cleaner'
   gem 'shoulda-matchers'
-  gem 'launchy' # marked for deletion
-  gem 'selenium-webdriver' # marked for deletion
 end
 
 Dir["./*-gemfile.rb"].each do |f|
