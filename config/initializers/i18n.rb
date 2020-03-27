@@ -17,7 +17,8 @@ module I18n
         end
       end
     end
-    alias_method_chain :translate, :fallback
+    alias_method :translate_without_fallback, :translate
+    alias_method :translate, :translate_with_fallback
     alias_method :t, :translate
   end
 
