@@ -1,0 +1,32 @@
+en:
+  time: &time
+    formats:
+      default: '%Y-%m-%d %H:%M:%S'
+      short: '%H:%M:%S'
+
+  date: &date
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+
+    month_names:
+      -
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+  time:
+    <<: *date
+
+  timedelta:
+    same_day: "The %{date} from %{start_time} until %{end_time}"
+    differents_day: "From %{start_date} at %{start_time} to %{end_date} at %{end_time}"

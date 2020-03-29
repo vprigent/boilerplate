@@ -42,14 +42,6 @@ class AdminPolicy
     only_admin
   end
 
-  def handle?
-    only_admin
-  end
-
-  def unhandle?
-    only_admin
-  end
-
   def publish?
     only_admin
   end

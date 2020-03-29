@@ -1,0 +1,5 @@
+en:
+  messages:
+    success:
+      update: "%{model} was successfully updated"
+      create: "%{model} was created successfully"

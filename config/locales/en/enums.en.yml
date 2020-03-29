@@ -1,0 +1,32 @@
+
+en:
+  enums:
+    file:
+      gravity:
+        north: Top
+        south: Bottom
+        east: Right
+        west: Left
+        north_west: Top-Left
+        north_east: Top-Right
+        south_west: Bottom-Left
+        south_east: Bottom-Right
+        center: Center
+
+    user:
+      role:
+        user: User
+        admin: Admin
+
+    settings:
+      types:
+        float: Float
+        integer: Integer
+        boolean: Boolean
+        string: Text
+        markdown: Markdown
+        collection: Collection
+        date: Date
+        datetime: Date with time
+        time: Time
+        image: Picture

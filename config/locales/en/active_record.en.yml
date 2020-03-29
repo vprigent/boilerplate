@@ -1,0 +1,27 @@
+en:
+  identified: &identified
+    first_name:
+      blank: The first name field is required
+    last_name:
+      blank: The last name field is required
+    email:
+      blank: The email field is required
+      taken: This email is already taken
+
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Validation failed: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Cannot delete record because a dependent %{record} exists
+          has_many: Cannot delete record because dependent %{record} exist
+      models:
+        user:
+          attributes:
+            <<: *identified
+            password:
+              blank: The password field is required
+              too_short: The password is too short
+            password_confirmation:
+              blank: The password confirmation is required
+              confirmation: The password confirmation does not match the password

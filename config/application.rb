@@ -30,12 +30,12 @@ module Boilerplate
     # config.time_zone = 'Central Time (US & Canada)'
 
     # Our default timezone
-    config.time_zone = 'Auckland'
+    config.time_zone = 'Sydney'
     config.active_record.default_timezone = :local
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :'en-NZ'
+    config.i18n.default_locale = :en
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.eager_load_paths << "#{config.root}/lib"
