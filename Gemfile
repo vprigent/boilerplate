@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 ruby '2.6.5'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.2.0'
 gem 'spring',        group: :development
+gem 'bootsnap'
 gem 'puma'
 gem 'settingslogic'
 gem 'sendgrid' # marked for deletion
-gem 'sdoc', '~> 0.4.0',          group: :doc # marked for deletion
 
 # Auth
 gem 'devise'
@@ -32,6 +32,7 @@ gem 'jquery-rails' # marked for hopeful deletion
 gem 'jb'
 gem 'bootstrap-sass'
 gem 'bourbon'
+gem 'eco'
 
 # Models
 gem 'kaminari' # to replace with pagy for faster collection management
@@ -56,7 +57,7 @@ gem 'sumo_seed', git: 'https://github.com/3print/sumo_seed'
 
 group :development do
   gem 'better_errors'
-  gem 'binding_of_caller', platforms: [:mri_22, :mri_23, :rbx] # replace with pry
+  gem 'binding_of_caller'
   gem 'html2haml'
   gem 'rails_layout'
   gem 'rb-fchange', :require=>false # for windows

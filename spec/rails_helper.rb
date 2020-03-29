@@ -5,8 +5,6 @@ require 'rspec/rails'
 require 'shoulda-matchers'
 require 'faker'
 
-# Add additional requires below this line. Rails is not loaded until this point!
-
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -97,21 +95,6 @@ RSpec.configure do |config|
   TPrint.log_level = 2
 
   Kernel.srand config.seed
-
-  module Faker
-    class Base
-      class << self
-        alias_method :old_fetch, :fetch
-        def fetch(*args)
-          res = old_fetch(*args)
-          unless args.include? "internet.domain_suffix"
-            res += "-#{SecureRandom.uuid}" if res.is_a?(String)
-          end
-          res
-        end
-      end
-    end
-  end
 end
 
 Shoulda::Matchers.configure do |config|

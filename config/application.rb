@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -7,9 +7,9 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module Boilerplate
-  ActiveSupport.halt_callback_chains_on_return_false = false
-
   class Application < Rails::Application
+    config.load_defaults 5.2
+
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,
